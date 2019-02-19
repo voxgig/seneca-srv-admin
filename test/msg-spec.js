@@ -13,17 +13,17 @@ module.exports = {
   calls: [
     {
       pattern: 'hook:register',
-      params: {service:{package:require('../package.json')}},
+      params: { service: { package: require('../package.json') } }
     },
     {
       pattern: 'get:service',
-      params: {name:'@seneca/srv-admin'},
-      out:{package:{}}
+      params: { name: '@seneca/srv-admin' },
+      out: { package: {} }
     },
     {
       pattern: 'list:service',
       params: {},
-      out:{items:[{package:{}}]}
-    },
+      out: { items: [{ package: {} }] }
+    }
   ]
 }

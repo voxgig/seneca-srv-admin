@@ -25,15 +25,12 @@ lab.test('happy', async () => {
   return await seneca_instance().ready()
 })
 
-
 lab.test(
   'organization-messages',
   Util.promisify((err, fin) => {
     SenecaMsgTest(seneca_instance(), require('./msg-spec.js'))(fin)
   })
 )
-
-
 
 function seneca_instance(config, plugin_options) {
   return Seneca(config, { legacy: { transport: false } })

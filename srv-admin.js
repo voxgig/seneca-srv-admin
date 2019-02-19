@@ -1,17 +1,15 @@
 /* Copyright (c) 2019 voxgig and other contributors, MIT License */
 'use strict'
 
-
 module.exports = service_admin
 module.exports.defaults = {}
-
 
 function service_admin(options) {
   const seneca = this
   const Joi = seneca.util.Joi
-  
+
   const servicemap = {}
-  
+
   seneca
     .message('role:admin,hook:register', hook_register)
     .message('role:admin,get:service', get_service)
@@ -30,23 +28,21 @@ function service_admin(options) {
     var names = Object.keys(servicemap)
     var srvdescs = names.map(sn => {
       var sv = servicemap[sn].package.version
-      return {name:sn, version:sv}
+      return { name: sn, version: sv }
     })
-    return {items:srvdescs}
+    return { items: srvdescs }
   }
 
-
   Object.assign(hook_register, {
-    desc: 'Register a service description. Typically used during the plugin init phase.',
+    desc:
+      'Register a service description. Typically used during the plugin init phase.',
     examples: {
-      'service:{package:<package>}': 'Provide service description.',
+      'service:{package:<package>}': 'Provide service description.'
     },
     validate: {
       service: Joi.object()
         .required()
-        .description(
-          'Service description object.'
-        )
+        .description('Service description object.')
     }
   })
 
@@ -58,9 +54,7 @@ function service_admin(options) {
     validate: {
       name: Joi.string()
         .required()
-        .description(
-          'The name of the service.'
-        )
+        .description('The name of the service.')
     },
     reply_desc: {
       package: 'Service package'
@@ -74,4 +68,3 @@ function service_admin(options) {
     }
   })
 }
-
